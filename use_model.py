@@ -16,15 +16,18 @@ def get_image(target_path):
     return image, grey_image, color_image
 
 
+# Load data
 file_path = r'test1.png'
 test_data = get_image(file_path)
 test_image = test_data[0]
 
+# Use model
 model = tf.keras.models.load_model('tallgjennkjenner.model')
 predictions = model.predict([test_image])
 test_result = np.argmax(predictions[0])
 print("Resultat", test_result)
 
+# Show results
 plt.subplot(2, 1, 1)
 plt.xticks([])
 plt.yticks([])
