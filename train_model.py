@@ -1,5 +1,4 @@
-import tensorflow as tf
-from tensorflow import keras
+import keras
 
 # Prepare data
 dataset_mnist = keras.datasets.mnist
@@ -10,9 +9,9 @@ testing_images = keras.utils.normalize(testing_images, axis=1)
 # Neural network
 model = keras.models.Sequential()
 model.add(keras.layers.Flatten())  # 28x28 -> 1x784
-model.add(keras.layers.Dense(128, activation=tf.nn.relu))
-model.add(keras.layers.Dense(128, activation=tf.nn.relu))
-model.add(keras.layers.Dense(10, activation=tf.nn.softmax))
+model.add(keras.layers.Dense(128, activation=keras.activations.relu))
+model.add(keras.layers.Dense(128, activation=keras.activations.relu))
+model.add(keras.layers.Dense(10, activation=keras.activations.softmax))
 
 # Train model
 model.compile(optimizer='adam',
@@ -26,4 +25,6 @@ print("Feilmargin", val_loss * 100, "%")
 print("Nøyaktighet", val_acc * 100, "%")
 
 # Save model
-model.save('digit_model.keras')
+model.save_weights('digit_model.weights.h5')
+with open('digit_model.architecture.json', 'w') as f:
+    f.write(model.to_json())

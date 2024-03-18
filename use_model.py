@@ -1,7 +1,8 @@
-import tensorflow as tf
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import keras
+from keras.models import model_from_json
 
 
 def get_image(target_path):
@@ -21,8 +22,12 @@ file_path = r'test1.png'
 test_data = get_image(file_path)
 test_image = test_data[0]
 
+# Load model
+with open('digit_model.architecture.json', 'r') as f:
+    model = model_from_json(f.read())
+model.load_weights('digit_model.weights.h5')
+
 # Use model
-model = tf.keras.models.load_model('tallgjennkjenner.model')
 predictions = model.predict([test_image])
 test_result = np.argmax(predictions[0])
 print("Resultat", test_result)

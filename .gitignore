@@ -3,6 +3,7 @@
 *.h5
 *.keras
 *.model
+*.architecture.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
