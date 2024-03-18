@@ -26,4 +26,4 @@ print("Feilmargin", val_loss * 100, "%")
 print("Nøyaktighet", val_acc * 100, "%")
 
 # Save model
-model.save('tallgjennkjenner.model')
+model.save('digit_model.keras')
